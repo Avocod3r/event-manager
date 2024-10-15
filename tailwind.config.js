@@ -24,13 +24,13 @@ export default {
           DEFAULT: "#E2E8F0",
           dark: "#CBD5E1",
         },
-        text: {
+        typo: {
           DEFAULT: "#1E293B",
           light: "#475569",
           dark: "#0F172A",
         },
         danger: "#EF4444",
-        sucess: "#22C55E",
+        success: "#22C55E",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
