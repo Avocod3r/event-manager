@@ -1,11 +1,5 @@
-import { EventForm } from "./components/EventForm";
-import { EventTable } from "./components/EventTable";
+import { EventManager } from "./components/EventManager";
 
 export default function App() {
-  return (
-    <>
-      <EventForm onSubmit={() => {}} />
-      <EventTable onDelete={() => {}} onEdit={() => {}} events={[]} />
-    </>
-  );
+  return <EventManager />;
 }
