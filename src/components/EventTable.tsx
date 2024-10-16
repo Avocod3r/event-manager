@@ -102,7 +102,7 @@ export const EventTable: React.FC<EventTableProps> = ({
   });
 
   return (
-    <div className="overflow-x-auto p-4">
+    <div className="overflow-x-auto">
       <div className="mb-4">
         <input
           type="text"
@@ -180,7 +180,7 @@ export const EventTable: React.FC<EventTableProps> = ({
           onChange={(e) => {
             table.setPageSize(Number(e.target.value));
           }}
-          className="border border-gray-300 p-2 rounded-md"
+          className="border border-gray-300 p-2 px-8 rounded-md"
         >
           {[5, 10, 20].map((pageSize) => (
             <option key={pageSize} value={pageSize}>

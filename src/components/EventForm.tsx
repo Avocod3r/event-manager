@@ -6,6 +6,7 @@ import {
   eventSchema,
   EventStatus,
 } from "../types/models/event.model";
+import { useEffect } from "react";
 
 type EventFormProps = {
   onSubmit: (data: Event) => void;
