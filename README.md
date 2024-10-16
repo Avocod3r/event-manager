@@ -1,50 +1,10 @@
-# React + TypeScript + Vite
+# The Personal Event Manager is a React-based application that allows users to add, edit, manage, and track events. It features a tabular view where events are displayed with attributes like name, description, category, date, and status. The table supports advanced functionalities such as sorting, filtering, and pagination using TanStack Table v8.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Key Features:
+**Event** **Management**: Add, edit, and delete events.
+**Sorting**: Sort events by name, date, or category.
+**Filtering**: Filter events by a global search or specific columns.
+**Pagination**: Navigate between pages and control the number of events per page.
+**Form** **Validation**: Ensures proper input for event forms (e.g., using Yup/Zod for validation).
+**Responsive** **UI**: Clean and responsive design built with Tailwind CSS for a modern, user-friendly interface.
+This project demonstrates advanced table functionalities with an intuitive UI for managing personal events.
