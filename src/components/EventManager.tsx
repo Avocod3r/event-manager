@@ -8,6 +8,7 @@ import { Modal } from "./Modal";
 export const EventManager = () => {
   const { events, isLoading, addEvent, editEvent, deleteEvent } =
     useEvents();
+
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(
     null
   );
@@ -19,7 +20,7 @@ export const EventManager = () => {
   };
 
   const handleAddEvent = (data: Event) => {
-    addEvent.mutate(data);
+    addEvent(data);
     handleCloseModal();
   };
 
@@ -29,7 +30,7 @@ export const EventManager = () => {
   };
 
   const handleEditEvent = (data: Event) => {
-    editEvent.mutate(data);
+    editEvent(data);
     handleCloseModal();
   };
 
@@ -61,7 +62,7 @@ export const EventManager = () => {
       <EventTable
         events={events || []}
         onEdit={selectEditEvent}
-        onDelete={(event: Event) => deleteEvent.mutate(event.id)}
+        onDelete={(event: Event) => deleteEvent(event.id)}
       />
     </div>
   );

@@ -24,7 +24,7 @@ export const EventTable: React.FC<EventTableProps> = ({
 }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
 
   const columns = useMemo<ColumnDef<Event>[]>(
     () => [

@@ -1,13 +1,10 @@
+import { useEffect, useState } from "react";
 import {
   Event,
   EventCategory,
   EventStatus,
 } from "../types/models/event.model";
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const fetchEvents = async (): Promise<Event[]> => {
   return new Promise((resolve) => {
@@ -35,71 +32,41 @@ const fetchEvents = async (): Promise<Event[]> => {
 };
 
 export const useEvents = () => {
-  const queryClient = useQueryClient();
-
-  const { data: events, isLoading } = useQuery<Event[]>({
+  const { data, isLoading } = useQuery<Event[]>({
     queryKey: ["events"],
     queryFn: fetchEvents,
+    staleTime: Infinity,
   });
 
-  const addEventMutation = useMutation({
-    mutationFn: (newEvent: Event) => {
-      return new Promise<Event>((resolve) => {
-        setTimeout(() => {
-          resolve({ ...newEvent, id: (events?.length || 0) + 1 });
-        });
-      });
-    },
+  const [events, setEvents] = useState<Event[]>(data || []);
 
-    onSuccess: (newEvent) => {
-      queryClient.setQueryData<Event[]>(
-        ["events"],
-        (oldEvents = []) => [...oldEvents, newEvent]
-      );
-    },
-  });
+  useEffect(() => {
+    if (data) {
+      setEvents(data);
+    }
+  }, [data]);
 
-  const editEventMutation = useMutation({
-    mutationFn: (updatedEvent: Event) => {
-      return new Promise<Event>((resolve) => {
-        setTimeout(() => {
-          resolve(updatedEvent);
-        }, 1000);
-      });
-    },
-    onSuccess: (updatedEvent) => {
-      queryClient.setQueryData<Event[]>(
-        ["events"],
-        (oldEvents = []) =>
-          oldEvents.map((event) =>
-            event.id === updatedEvent.id ? updatedEvent : event
-          )
-      );
-    },
-  });
+  const addEvent = (newEvent: Event) => {
+    setEvents([...events, { ...newEvent, id: events.length + 1 }]);
+  };
 
-  const deleteEventMutation = useMutation({
-    mutationFn: (eventId: number) => {
-      return new Promise<void>((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, 1000);
-      });
-    },
-    onSuccess: (_, eventId) => {
-      queryClient.setQueryData<Event[]>(
-        ["events"],
-        (oldEvents = []) =>
-          oldEvents.filter((event) => event.id !== eventId)
-      );
-    },
-  });
+  const editEvent = (editedEvent: Event) => {
+    setEvents(
+      events.map((event) =>
+        event.id === editedEvent.id ? editedEvent : event
+      )
+    );
+  };
+
+  const deleteEvent = (eventId: number) => {
+    setEvents(events.filter((event) => event.id !== eventId));
+  };
 
   return {
     events,
     isLoading,
-    addEvent: addEventMutation,
-    editEvent: editEventMutation,
-    deleteEvent: deleteEventMutation,
+    addEvent,
+    editEvent,
+    deleteEvent,
   };
 };

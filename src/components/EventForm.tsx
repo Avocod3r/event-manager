@@ -6,7 +6,6 @@ import {
   eventSchema,
   EventStatus,
 } from "../types/models/event.model";
-import { useEffect } from "react";
 
 type EventFormProps = {
   onSubmit: (data: Event) => void;
@@ -52,7 +51,7 @@ export const EventForm: React.FC<EventFormProps> = ({
         <textarea
           {...register("description")}
           className="border p-2 w-full rounded-sm resize-none h-full"
-        />
+        ></textarea>
       </div>
       <div>
         <label>Category</label>
