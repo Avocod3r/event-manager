@@ -12,9 +12,13 @@ export const EventManager = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(
     null
   );
+  const [selectedEventId, setSelectedEventId] = useState<
+    number | null
+  >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCloseModal = () => {
+    setSelectedEventId(null);
     setSelectedEvent(null);
     setIsModalOpen(false);
   };
@@ -26,11 +30,12 @@ export const EventManager = () => {
 
   const selectEditEvent = (event: Event) => {
     setSelectedEvent(event);
+    setSelectedEventId(event.id);
     setIsModalOpen(true);
   };
 
   const handleEditEvent = (data: Event) => {
-    editEvent(data);
+    editEvent({ ...data, id: selectedEventId! });
     handleCloseModal();
   };
 

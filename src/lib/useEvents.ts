@@ -51,8 +51,9 @@ export const useEvents = () => {
   };
 
   const editEvent = (editedEvent: Event) => {
-    setEvents(
-      events.map((event) =>
+    console.log(editedEvent);
+    setEvents((prev) =>
+      prev.map((event) =>
         event.id === editedEvent.id ? editedEvent : event
       )
     );
