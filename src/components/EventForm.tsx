@@ -50,7 +50,7 @@ export const EventForm: React.FC<EventFormProps> = ({
         <label>Event Description</label>
         <textarea
           {...register("description")}
-          className="border p-2 w-full rounded-sm resize-none"
+          className="border p-2 w-full rounded-sm resize-none h-full"
         />
       </div>
       <div>
